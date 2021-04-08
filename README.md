@@ -1,2 +1,4 @@
 # asQ
-**asQ** is an approach to comprehensively storing `appState` for frameworkless javascript-based **Single Page Apps** within a single **JSON**-based `queryString` parameter.
+**asQ** is an approach intended for frameworkless javascript-based **Single Page Apps**.
+
+**asQ** stores `appState` comprehensively within a single **JSON**-based `queryString` parameter.
