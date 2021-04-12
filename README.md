@@ -9,6 +9,7 @@ Storing State in aSPs
 =================
 URL queryString:
 
+```
 ?appstate=[
   {
     identifier: ".myList" < for querySelectorAll
@@ -22,23 +23,26 @@ URL queryString:
     ...
   }
 ]
+```
 
 
 1) ^^^ The above initially included an entry:
 
-invokeFunctions: ["", "", ""]
+`invokeFunctions: ["", "", ""]`
 
 But this isn't really necessary, since any function that can be invoked by name, can be invoked inside a native event or a custom event, which can be called by activateEvents.
 
 2) It's crucial to remember that any element state description *always* describes a transformation from initialState, so... at window.onload the initialState needs to be captured and added to each element as a custom data-attribute:
- 
+
+```
 data-initial-state="{
     classList: {},
     customData: {},
     attributes: {},
     events: {},
     activateEvents: ["", "", ""]
-  }"
+}"
+```
 
 3) Any change to Model:
 
@@ -57,12 +61,12 @@ data-initial-state="{
 
 YES. And that would matter if One change happened at the start:
 
-font-weight: bold;
-background-color: blue;
+`font-weight: bold;`
+`background-color: blue;`
 
 and Another change happened 0.45s later:
 
-background-color: red;
+`background-color: red;`
 
 So... what needs to happen for the background-color to switch straight to red?
 
@@ -74,14 +78,16 @@ Something like:
   iii.iii) Go through document and get rid of all data-appstate-update-index attributes with a single index
  iii.iv) Create new appState Object like this:
 
+```
 data-appstate-update-index='["2", "6"]'
 data-appstate-update-index='["3", "4"]'
 data-appstate-update-index='["2", "5"]'
 data-appstate-update-index='["4", "5"]'
+```
 
 - for each element:
-   i) add :not([data-appstate-update-index="['2', '6']"]) to each identifier
-  ii) add new entry at the end of appState Object: [data-appstate-update-index="['2', '6']"]
+   i) add `:not([data-appstate-update-index="['2', '6']"])` to each identifier
+  ii) add new entry at the end of appState Object: `[data-appstate-update-index="['2', '6']"]`
 
 
 ______
