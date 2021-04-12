@@ -7,11 +7,36 @@ ______
 
 ## Evolution of the Idea
 
-In early April 2021, I was working on the **Ashiva MultiPage Editor** (founded on the server-side PHP script from **Kubaru** and the front-end CSS layout from **LanguageCompass**).
+In early April 2021, I was working on the **Ashiva MultiPage Editor** (the foundations of which were built on the server-side PHP script from **Kubaru** and the front-end CSS layout from the **LanguageCompass**).
 
-At a fairly early stage I realised that not only was some of the application-state (e.g. `formAction`, `replaceActivated`) recorded in custom-data attributes (`data-*`) in the `<form>` element but more of the application-state (e.g. `pagesFound`) - perhaps all of it? - could be recorded in the same way.
+At a fairly early stage I realised that since I was already recording some of the application-state (e.g. `formAction`, `replaceActivated`) in custom-data attributes (`data-*`) at the top of the form in the `<form>` element, it ought to be possible to record more of the application-state (e.g. `pagesFound`) - perhaps all of it? - in the same way.
 
-Not least this meant that a surprisingly large amount of the view-state could be handled by `HTML` and `CSS` alone - not an approach I imagined would be particularly widespread in the JS-first SPA Dev Community.
+Not least, this approach meant that instead of adding and removing elements to the DOM via javascript, a surprisingly large amount of the view-state could be handled by `HTML` and `CSS` alone. (Not an approach I imagined would be particularly widespread in the JS-first SPA Dev Community.)
+
+Being able to store all of the application-state *actually within the markup* reminded me of a suggestion I came across when I was learning `WebComponents` in Sept-Oct 2020 - that a dedicated `WebComponent` might be developed, specifically to store all application-state variables. But, as I thought about how to do this, I realised, there wasn't really anything a dedicated `WebComponent` could do that a standard element with custom-data attributes couldn't.
+
+However, it also occurred to me that recording the application-state *anywhere* within the markup (either in a dedicated `WebComponent` or in custom-data attributes) meant that the application-state couldn't be shared - it would only be accessible from the SPA, while the SPA was running.
+
+I briefly considered `localStorage` as an alternative to custom-data attributes... but that was only one step better: it *would* mean the application state could be shared between browser-tabs, but still not between browsers.
+
+So the answer, of course, was to take advantage of the `queryString`. There was some precedent for this: in an early experiment on the **Da3shBoard** I had added a `queryString` which included state variables. But then I'd never really used them, so they were largely superfluous.
+
+This time however, adding the following `queryString` to **Ashiva MultiPage Editor** meant that the entire application state was effectively stored in the URL:
+
+    ?formAction=input-text&findPhrase=12345&caseSensitive=true&replacePhrase=abcde&replaceActivated=true&pagesFound=true
+    
+Or, effectively:
+
+```
+{
+  formAction: 'input-text',
+  findPhrase: '12345',
+  caseSensitive: 'true',
+  replacePhrase: 'abcde',
+  replaceActivated: 'true',
+  pagesFound: 'true'
+}
+```
 
 
 
