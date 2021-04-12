@@ -53,14 +53,19 @@ data-initial-state="{
 4) Any change to Model:
 
    i) Gets appState Object from queryString
+   
   ii) Updates appState Object
- iii) Proofreads and edits appState Object
-  iv) Applies updated appState Obj to DOM
-   v) Updates URL using pushState
+ 
+ iii) Proofreads and edits appState Object
+ 
+  iv) Applies updated appState Obj to DOM
+  
+  v) Updates URL using pushState
 
 5) Any page loaded with `?appState`:
 
   i) Gets appState Object from queryString
+  
  ii) Applies appState Object to DOM
 
 6) Does this mean that a single element may undergo multiple transformations as appState is processed?
@@ -68,6 +73,7 @@ data-initial-state="{
 YES. And that would matter if One change happened at the start:
 
 `font-weight: bold;`
+
 `background-color: blue;`
 
 and Another change happened 0.45s later:
@@ -79,10 +85,14 @@ So... what needs to happen for the background-color to switch straight to red?
 ie. How does Step iii) work?
 
 Something like:
+
   iii.i) Adds data-appstate-update-index="[]" attribute to each element
-  iii.ii) If data-appstate-update-index attribute already exists, add new index
-  iii.iii) Go through document and get rid of all data-appstate-update-index attributes with a single index
-  iii.iv) Create new appState Object like this:
+
+  iii.ii) If data-appstate-update-index attribute already exists, add new index
+
+  iii.iii) Go through document and get rid of all data-appstate-update-index attributes with a single index
+  
+  iii.iv) Create new appState Object like this:
 
 ```
 data-appstate-update-index='["2", "6"]'
@@ -92,8 +102,10 @@ data-appstate-update-index='["4", "5"]'
 ```
 
 - for each element:
-   i) add `:not([data-appstate-update-index="['2', '6']"])` to each identifier
-  ii) add new entry at the end of appState Object: `[data-appstate-update-index="['2', '6']"]`
+  
+  i) add `:not([data-appstate-update-index="['2', '6']"])` to each identifier
+  
+  ii) add new entry at the end of appState Object: `[data-appstate-update-index="['2', '6']"]`
 
 
 ______
