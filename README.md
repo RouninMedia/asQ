@@ -52,22 +52,22 @@ data-initial-state="{
 
 4) Any change to Model:
 
-   i) Gets `appState Object` from `queryString`
+ i. Gets `appState Object` from `queryString`
    
-  ii) Updates `appState Object`
+ ii. Updates `appState Object`
  
- iii) Proofreads and edits `appState Object`
+ iii. Proofreads and edits `appState Object`
  
-  iv) Applies updated `appState Object` to `DOM`
+ iv. Applies updated `appState Object` to `DOM`
   
-  v) Updates URL using `history.pushState`
+ v. Updates URL using `history.pushState`
   
 
 5) Any page loaded with `?appState`:
 
-  i) Gets `appState Object` from `queryString`
+ i. Gets `appState Object` from `queryString`
   
- ii) Applies `appState Object` to `DOM`
+ ii. Applies `appState Object` to `DOM`
 
 6) Does this mean that a single element may undergo multiple transformations as the `appState Object` is processed?
 
@@ -104,9 +104,9 @@ data-appstate-update-index='["4", "5"]'
 
 - for each element:
   
-  i) add `:not([data-appstate-update-index="['2', '6']"])` to each identifier
+ i. add `:not([data-appstate-update-index="['2', '6']"])` to each identifier
   
-  ii) add new entry at the end of appState Object: `[data-appstate-update-index="['2', '6']"]`
+ ii. add new entry at the end of appState Object: `[data-appstate-update-index="['2', '6']"]`
 
 
 ______
