@@ -12,7 +12,7 @@ URL queryString:
 ```
 ?appstate=[
   {
-    identifier: ".myList" < for querySelectorAll
+    identifier: ".myList",
     classList: {"set": [], "remove": []},
     customData: {"set": {}, "remove": []},
     attributes: {"set": {}, "remove": []},
@@ -32,7 +32,9 @@ URL queryString:
 
 But this isn't really necessary, since any function that can be invoked by name, can be invoked inside a native event or a custom event, which can be called by activateEvents.
 
-2) It's crucial to remember that any element state description *always* describes a transformation from initialState, so... at window.onload the initialState needs to be captured and added to each element as a custom data-attribute:
+2) The `identifier` value is a CSS selector and is run through a `[... document.querySelectorAll()];` statement to grab all the target elements as an array.
+
+3) It's crucial to remember that any element state description *always* describes a transformation from initialState, so... at window.onload the initialState needs to be captured and added to each element as a custom data-attribute:
 
 ```
 data-initial-state="{
@@ -44,20 +46,20 @@ data-initial-state="{
 }"
 ```
 
-3) Any change to Model:
+4) Any change to Model:
 
    i) Gets appState Object from queryString
   ii) Updates appState Object
  iii) Proofreads and edits appState Object
- iv) Applies updated appState Obj to DOM
- v) Updates URL using pushState
+  iv) Applies updated appState Obj to DOM
+   v) Updates URL using pushState
 
-4) Any page loaded with ?appState:
+5) Any page loaded with `?appState`:
 
   i) Gets appState Object from queryString
  ii) Applies appState Object to DOM
 
-5) Does this mean that a single element may undergo multiple transformations as appState is processed?
+6) Does this mean that a single element may undergo multiple transformations as appState is processed?
 
 YES. And that would matter if One change happened at the start:
 
@@ -76,7 +78,7 @@ Something like:
   iii.i) Adds data-appstate-update-index="[]" attribute to each element
   iii.ii) If data-appstate-update-index attribute already exists, add new index
   iii.iii) Go through document and get rid of all data-appstate-update-index attributes with a single index
- iii.iv) Create new appState Object like this:
+  iii.iv) Create new appState Object like this:
 
 ```
 data-appstate-update-index='["2", "6"]'
