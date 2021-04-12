@@ -53,13 +53,17 @@ data-initial-state="{
 4) Any change to Model:
 
  i. Gets `appState Object` from `queryString`
+ 
    
  ii. Updates `appState Object`
  
+ 
  iii. Proofreads and edits `appState Object`
  
+ 
  iv. Applies updated `appState Object` to `DOM`
-  
+ 
+ 
  v. Updates URL using `history.pushState`
   
 
