@@ -13,7 +13,7 @@ At a fairly early stage I realised that since I was already recording some of th
 
 Not least, this approach meant that instead of adding and removing elements to the DOM via javascript, a surprisingly large amount of the view-state could be handled by `HTML` and `CSS` alone. (Not an approach I imagined would be particularly widespread in the JS-first SPA Dev Community.)
 
-Being able to store all of the application-state *actually within the markup* reminded me of a suggestion I came across when I was learning `WebComponents` in Sept-Oct 2020 - that a dedicated `WebComponent` might be developed, specifically to store all application-state variables. But, as I thought about how to do this, I realised, there wasn't really anything a dedicated `WebComponent` could do that a standard element with custom-data attributes couldn't.
+Being able to store all of the application-state *actually within the markup* reminded me of a suggestion I came across when I was learning `WebComponents` in Sept-Oct 2020 - that a dedicated `WebComponent` might be developed, specifically to store all application-state variables. But, as I thought about how to do this, I realised, there wasn't really anything a dedicated `WebComponent` could do that a standard element with custom-data attributes couldn't do already.
 
 However, it also occurred to me that recording the application-state *anywhere* within the markup (either in a dedicated `WebComponent` or in custom-data attributes) meant that the application-state couldn't be shared - it would only be accessible from the SPA, while the SPA was running.
 
