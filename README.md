@@ -5,8 +5,8 @@
 
 ______
 
-Storing State in aSPs
-=================
+## Storing State in aSPs
+
 URL queryString:
 
 ```
@@ -26,9 +26,11 @@ URL queryString:
 ```
 
 
-1) ^^^ The above initially included an entry:
+1) The object initially included a seventh entry:
 
-`invokeFunctions: ["", "", ""]`
+```
+invokeFunctions: ["", "", ""]
+```
 
 But this isn't really necessary, since any function that can be invoked by name, can be invoked inside a native event or a custom event, which can be called by activateEvents.
 
