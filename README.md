@@ -88,6 +88,8 @@ ______
 
 ## Evolution of the Idea
 
+### Part I
+
 In early April 2021, I was working on the **Ashiva MultiPage Editor** (the foundations of which were built on the server-side PHP script from **Kubaru** and the front-end CSS layout from the **LanguageCompass**).
 
 At a fairly early stage I realised that since I was already recording some of the application-state (e.g. `formAction`, `replaceActivated`) in custom-data attributes (`data-*`) at the top of the form in the `<form>` element, it ought to be possible to record more of the application-state (e.g. `pagesFound`) - perhaps all of it? - in the same way.
@@ -118,3 +120,13 @@ Effectively the equivalent of:
   pagesFound: 'true'
 }
 ```
+
+I realised I could easily keep track of everything by invoking `history.pushState()` to update the `queryString` every time a user-interaction changed the state of the application.
+
+____
+
+### Part II
+
+Using the `queryString` to record the entire application-state is only half of **asQ**.
+
+
