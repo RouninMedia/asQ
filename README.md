@@ -3,6 +3,20 @@
 
 **asQ** stores `appState` comprehensively within a single **JSON**-based `queryString` parameter.
 
+______
+
+## Evolution of the Idea
+
+In early April 2021, I was working on the **Ashiva MultiPage Editor** (founded on the server-side PHP script from **Kubaru** and the front-end CSS layout from **LanguageCompass**).
+
+At a fairly early stage I realised that not only was some of the application-state (e.g. `formAction`, `replaceActivated`) recorded in custom-data attributes (`data-*`) in the `<form>` element but more of the application-state (e.g. `pagesFound`) - perhaps all of it? - could be recorded in the same way.
+
+Not least this meant that a surprisingly large amount of the view-state could be handled by `HTML` and `CSS` alone - not an approach I imagined would be particularly widespread in the JS-first SPA Dev Community.
+
+
+
+______
+
 Storing State in aSPs
 =================
 URL queryString:
