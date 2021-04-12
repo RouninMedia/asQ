@@ -127,6 +127,13 @@ ____
 
 ### Part II
 
-Using the `queryString` to record the entire application-state is only half of **asQ**.
+Using the `queryString` as the *Single Source of Truth* (*SSOT*) which maintains the entire application-state is only *half* of **asQ**.
+
+The more difficult part is thinking how to make `queryString`-based application-state-management:
+
+  a) scalable so that it would fit an `SPA` (or `aSP`) of any size or complexity
+  b) easily applicable to any `SPA` (or `aSP`)
+  
+This is where **asQ** comes into its own.
 
 
