@@ -13,11 +13,12 @@ URL queryString:
 ?appstate=[
   {
     identifier: ".myList",
-    classList: {"set": [], "remove": []},
-    customData: {"set": {}, "remove": []},
-    attributes: {"set": {}, "remove": []},
-    events: {"set": {}, "remove": {}},
-    activateEvents: ["", "", ""]
+    id: {"set": "id", "remove": "id"},
+    classList: {"set": ["class", "class"], "remove": ["class"]},
+    customData: {"set": [{"key": "value"}, {"key": "value""}], "remove": ["key"]},
+    attributes: {"set": [{"key": "value""}, {"key": "value""}], "remove": ["key"]},
+    events: {"set": {["event", "functionName", boolean], ["event", "functionName", boolean]}, "remove": {["event", "functionName", boolean]}},
+    activateEvents: ["event", "event", "event"]
   },
   {
     ...
@@ -26,25 +27,26 @@ URL queryString:
 ```
 
 
-1) The object initially included a seventh entry:
+1) The object initially included a eighth entry:
 
 ```
-invokeFunctions: ["", "", ""]
+invokeFunctions: ["functionName", "functionName", "functionName"]
 ```
 
 But this isn't really necessary, since any function that can be invoked by name, can be invoked inside a native event or a custom event, which can be called by activateEvents.
 
 2) The `identifier` value is a CSS selector and is run through a `[... document.querySelectorAll()];` statement to grab all the target elements as an array.
 
-3) It's crucial to remember that any element state description *always* describes a transformation from initialState, so... at window.onload the initialState needs to be captured and added to each element as a custom data-attribute:
+3) It's crucial to remember that any element state description *always* describes only the transformation from `initialState`, so... at `window.onload` the `initialState` **needs** to be captured and added to each element as a `custom-data attribute`:
 
 ```
 data-initial-state="{
-    classList: {},
-    customData: {},
-    attributes: {},
-    events: {},
-    activateEvents: ["", "", ""]
+    id: "id",
+    classList: ["class", "class", "class"],
+    customData: [{"key": "value"}, {"key": "value"}],
+    attributes: [{"key": "value"}, {"key": "value"}],
+    events: {["event", "function", boolean], ["event", "function", boolean]},
+    activateEvents: ["event", "event", "event"]
 }"
 ```
 
