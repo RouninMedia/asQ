@@ -133,24 +133,42 @@ I briefly considered `localStorage` as an alternative to custom-data attributes.
 
 So the answer, of course, was to take advantage of the `queryString`. There was some precedent for this: in an early experiment on the **Da3shBoard** I had added a `queryString` which included state variables. But then I'd never really used them, so they were largely superfluous.
 
-This time however, adding the following `queryString` to **Ashiva MultiPage Editor** meant that the entire application state was effectively stored in the URL:
+This time however, adding the following `queryString` to **Ashiva MultiPage Editor** meant that the ***entire application state*** was effectively stored in the URL:
 
-    ?formAction=input-text&findPhrase=12345&caseSensitive=true&replacePhrase=abcde&replaceActivated=true&pagesFound=true
+    ?formAction=input-text&findPhrase=12345&caseSensitive=true&replaceActivated=true&replacePhrase=abcde&pagesFound=true
     
-Effectively the equivalent of:
+This `queryString` was effectively the equivalent of a (theoretical, but soon to be real) `appState object` like this:
 
 ```
 {
   formAction: 'input-text',
   findPhrase: '12345',
   caseSensitive: 'true',
-  replacePhrase: 'abcde',
   replaceActivated: 'true',
+  replacePhrase: 'abcde',
   pagesFound: 'true'
 }
 ```
 
-I realised I could easily keep track of everything by invoking `history.pushState()` to update the `queryString` every time a user-interaction changed the state of the application.
+I realised that every time a user-interaction changed the state of the application I could easily keep track of everything by:
+
+ i. updating the values in the *helper* `appState Object`
+ ii. taking the updated values in the `appState Object` and invoking `history.pushState()` to update the `queryString`
+ iii. replicating the updated values in the `queryString` in `custom-data` attributes in the `<form>` element like this:
+
+```
+<form class="multiPageEditorForm"
+data-form-action="input-text"
+data-find-phrase="12345"
+data-case-sensitive="true"
+data-replace-activated="true"
+data-replace-phrase="abcde"
+data-pages-found="true">
+```
+
+#### In Summary:
+ 
+ > User Action => Updates `appState Object` => Translated to `queryString` (**SSOT**) => Replicated as `custom-data` attributes
 
 ____
 
