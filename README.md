@@ -50,6 +50,10 @@ data-initial-state="{
 }"
 ```
 
+3.5) What about if there are CSS Transitions? Nobody wants to see the transition from `initialState` endlessly repeating itself each time. So... how can this be prevented? Should there be both an `data-initial-state` and a `data-current-state`? This will need thinking about.
+
+What about `MutationObservers`? Do they have any utility here?
+
 4) Any change to Model:
 
  i. Gets `appState Object` from `queryString`
