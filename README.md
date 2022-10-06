@@ -199,7 +199,9 @@ ______
 
 **ie.**
 
-`#["This","is",{"a":"test"}]`
+The `hashFragment` on this URL:
+
+`https://example.com/path/to/page/#["This","is",{"a":"test"}]`
 
 can be processed via:
 
@@ -212,7 +214,7 @@ to give:
   "This",
   "is",
   {
-    "a" : "test"
+    "a": "test"
   }
 ]
 ```
