@@ -1,4 +1,4 @@
-# asQ
+# asQ (and... asH)
 **asQ** is a *state-management* approach intended to be used by frameworkless javascript-based **Single Page Apps**.
 
 **asQ** stores `appState` comprehensively within a single **JSON**-based `queryString` parameter.
@@ -191,7 +191,9 @@ This is where **asQ** comes into its own:
  
 ______
 
-### Further ideas
+## Further ideas...
+
+## asH
 
 **asH** (*appState:hashFragment*) is the ideal twin to **asQ** (*appState:queryString*).
 
