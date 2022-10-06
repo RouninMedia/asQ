@@ -95,13 +95,13 @@ ie. How does Step iii) work?
 
 Something like:
 
-  iii.i) Adds `data-appstate-update-index="[]"` attribute to each element
+ 6.3.1 Adds `data-appstate-update-index="[]"` attribute to each element
 
-  iii.ii) If `data-appstate-update-index` attribute already exists, add new index
+ 6.3.2 If `data-appstate-update-index` attribute already exists, add new index
 
-  iii.iii) Go through document and get rid of all `data-appstate-update-index` attributes with a single index
+ 6.3.3 Go through document and get rid of all `data-appstate-update-index` attributes with a single index
   
-  iii.iv) Create new appState Object like this:
+ 6.3.4 Create new appState Object like this:
 
 ```
 data-appstate-update-index='["2", "6"]'
@@ -180,11 +180,41 @@ ____
 
 Using the `queryString` as the *Single Source of Truth* (*SSOT*) which maintains the entire application-state is only *half* of **asQ**.
 
-The more difficult part is thinking how to make `queryString`-based application-state-management:
+The more difficult part is thinking how to make C-based application-state-management:
 
-  a) scalable so that it would fit an `SPA` (or `aSP`) of any size or complexity
-  b) easily applicable to any `SPA` (or `aSP`)
+ 1. scalable so that it would fit an `SPA` (or `aSP`) of any size or complexity
+ 2. easily applicable to any `SPA` (or `aSP`)
   
-This is where **asQ** comes into its own.
+This is where **asQ** comes into its own:
+
+ - the `state` described in the `queryString` for any given `view` only needs to declare the differences in any element from that element's own `data-initial-state`
+ 
+______
+
+### Further ideas
+
+**asH** (*appState:hashFragment*) is the ideal twin to **asQ** (*appState:queryString*).
+
+**asH** is essentially identical to **asQ**, but utilises a `hashFragment` instead of a `queryString`.
+
+**ie.**
+
+`#["This","is",{"a":"test"}]`
+
+can be processed via:
+
+`JSON.parse(decodeURIComponent(location.hash.replace('#', '')))`
+
+to give:
+
+```
+[
+  "This",
+  "is",
+  {
+    "a" : "test"
+  }
+]
+```
 
 
