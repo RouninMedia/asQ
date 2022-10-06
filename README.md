@@ -56,26 +56,26 @@ What about `MutationObservers`? Do they have any utility here?
 
 4) Any change to Model:
 
- i. Gets `appState Object` from `queryString`
+  4.1 Gets `appState Object` from `queryString`
  
    
- ii. Updates `appState Object`
+  4.2 Updates `appState Object`
  
  
- iii. Proofreads and edits `appState Object`
+  4.3 Proofreads and edits `appState Object`
  
  
- iv. Applies updated `appState Object` to `DOM`
+  4.4 Applies updated `appState Object` to `DOM`
  
  
- v. Updates URL using `history.pushState`
+  4.5 Updates URL using `history.pushState`
   
 
 5) Any page loaded with `?appState`:
 
- i. Gets `appState Object` from `queryString`
+  5.1 Gets `appState Object` from `queryString`
   
- ii. Applies `appState Object` to `DOM`
+  5.2 Applies `appState Object` to `DOM`
 
 6) Does this mean that a single element may undergo multiple transformations as the `appState Object` is processed?
 
@@ -95,13 +95,13 @@ ie. How does Step iii) work?
 
 Something like:
 
- 6.3.1 Adds `data-appstate-update-index="[]"` attribute to each element
+  6.1 Adds `data-appstate-update-index="[]"` attribute to each element
 
- 6.3.2 If `data-appstate-update-index` attribute already exists, add new index
+  6.2 If `data-appstate-update-index` attribute already exists, add new index
 
- 6.3.3 Go through document and get rid of all `data-appstate-update-index` attributes with a single index
+  6.3 Go through document and get rid of all `data-appstate-update-index` attributes with a single index
   
- 6.3.4 Create new appState Object like this:
+  6.4 Create new appState Object like this:
 
 ```
 data-appstate-update-index='["2", "6"]'
